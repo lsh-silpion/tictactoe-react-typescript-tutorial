@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-type sqares = string[]
+type Squares = string[]
 
-interface SqareProps {
+interface SquareProps {
   value: string,
   onSquareClick: () => void,
 }
 
-function Square({ value, onSquareClick }: SqareProps) {
+function Square({ value, onSquareClick }: SquareProps) {
   return (
       <button className="square" onClick={onSquareClick}>
         {value}
@@ -17,8 +17,8 @@ function Square({ value, onSquareClick }: SqareProps) {
 
 interface BoardProps {
   xIsNext: boolean,
-  squares: sqares,
-  onPlay: (sqares: sqares) => void,
+  squares: Squares,
+  onPlay: (sqares: Squares) => void,
 }
 
 function Board({ xIsNext, squares, onPlay }: BoardProps) {
@@ -66,12 +66,12 @@ function Board({ xIsNext, squares, onPlay }: BoardProps) {
 }
 
 export default function Game() {
-  const [history, setHistory] = useState<sqares[]>([Array(9).fill(null)]);
+  const [history, setHistory] = useState<Squares[]>([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState<number>(0);
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
 
-  function handlePlay(nextSquares: sqares) {
+  function handlePlay(nextSquares: Squares) {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
@@ -107,7 +107,7 @@ export default function Game() {
   );
 }
 
-function calculateWinner(squares: sqares) {
+function calculateWinner(squares: Squares) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
