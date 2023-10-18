@@ -22,7 +22,7 @@ interface BoardProps {
 }
 
 function Board({ xIsNext, squares, onPlay }: BoardProps) {
-  const handleClick = useCallBack((i: number) => {
+  const handleClick = useCallback((i: number) => {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
@@ -42,19 +42,19 @@ function Board({ xIsNext, squares, onPlay }: BoardProps) {
       <>
         <div className="status">{status}</div>
         <div className="board-row">
-          <Square value={squares[0]} onSquareClick={useCallback(() => handleClick(0))} />
-          <Square value={squares[1]} onSquareClick={useCallback(() => handleClick(1))} />
-          <Square value={squares[2]} onSquareClick={useCallback(() => handleClick(2))} />
+          <Square value={squares[0]} onSquareClick={useCallback(() => handleClick(0), [xIsNext, squares, onPlay])} />
+          <Square value={squares[1]} onSquareClick={useCallback(() => handleClick(1), [xIsNext, squares, onPlay])} />
+          <Square value={squares[2]} onSquareClick={useCallback(() => handleClick(2), [xIsNext, squares, onPlay])} />
         </div>
         <div className="board-row">
-          <Square value={squares[3]} onSquareClick={useCallback(() => handleClick(3))} />
-          <Square value={squares[4]} onSquareClick={useCallback(() => handleClick(4))} />
-          <Square value={squares[5]} onSquareClick={useCallback(() => handleClick(5))} />
+          <Square value={squares[3]} onSquareClick={useCallback(() => handleClick(3), [xIsNext, squares, onPlay])} />
+          <Square value={squares[4]} onSquareClick={useCallback(() => handleClick(4), [xIsNext, squares, onPlay])} />
+          <Square value={squares[5]} onSquareClick={useCallback(() => handleClick(5), [xIsNext, squares, onPlay])} />
         </div>
         <div className="board-row">
-          <Square value={squares[6]} onSquareClick={useCallback(() => handleClick(6))} />
-          <Square value={squares[7]} onSquareClick={useCallback(() => handleClick(7))} />
-          <Square value={squares[8]} onSquareClick={useCallback(() => handleClick(8))} />
+          <Square value={squares[6]} onSquareClick={useCallback(() => handleClick(6), [xIsNext, squares, onPlay])} />
+          <Square value={squares[7]} onSquareClick={useCallback(() => handleClick(7), [xIsNext, squares, onPlay])} />
+          <Square value={squares[8]} onSquareClick={useCallback(() => handleClick(8), [xIsNext, squares, onPlay])} />
         </div>
       </>
   );
